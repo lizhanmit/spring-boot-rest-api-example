@@ -1,4 +1,4 @@
-package org.example.restapi.model;
+package org.example.restapi.entity;
 
 import jakarta.persistence.*;
 
@@ -54,4 +54,5 @@ public class Book {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+
 }
