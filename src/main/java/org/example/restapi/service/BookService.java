@@ -1,13 +1,12 @@
 package org.example.restapi.service;
 
-import org.example.restapi.exception.BookNotFoundEx;
+import org.example.restapi.exception.ResourceNotFoundEx;
 import org.example.restapi.model.Book;
 import org.example.restapi.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookService {
@@ -25,7 +24,7 @@ public class BookService {
 
     public Book getBookById(Long id) {
         return bookRepository.findById(id)
-                .orElseThrow(() -> new BookNotFoundEx("Book not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundEx("Book not found with id: " + id));
     }
 
     public Book updateBook(Long id, Book bookDetails) {
