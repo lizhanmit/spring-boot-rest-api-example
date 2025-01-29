@@ -1,5 +1,6 @@
 package org.example.restapi.controller;
 
+import jakarta.validation.Valid;
 import org.example.restapi.dto.BookDTO;
 import org.example.restapi.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping
-    public ResponseEntity<BookDTO> createBook(@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> createBook(@Valid @RequestBody BookDTO bookDTO) {
         BookDTO newBookDTO = bookService.createBook(bookDTO);
         return new ResponseEntity<>(newBookDTO, HttpStatus.CREATED);
     }
@@ -35,7 +36,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @Valid @RequestBody BookDTO bookDTO) {
         BookDTO updatedBookDTO = bookService.updateBook(id, bookDTO);
         return new ResponseEntity<>(updatedBookDTO, HttpStatus.OK);
     }

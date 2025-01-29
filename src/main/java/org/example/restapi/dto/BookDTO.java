@@ -1,11 +1,16 @@
 package org.example.restapi.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class BookDTO {
 
     // Do not want to expose field "id" through the API.
 
+    @NotBlank
     private String title;
+    @NotBlank
     private String author;
+    @NotBlank
     private String isbn;
 
     public BookDTO() {
