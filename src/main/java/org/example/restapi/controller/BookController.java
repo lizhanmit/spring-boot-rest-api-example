@@ -4,6 +4,9 @@ import jakarta.validation.Valid;
 import org.example.restapi.dto.BookDTO;
 import org.example.restapi.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +27,9 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BookDTO>> getAllBooks() {
-        List<BookDTO> bookDTOs = bookService.getAllBooks();
-        return new ResponseEntity<>(bookDTOs, HttpStatus.OK);
+    public ResponseEntity<Page<BookDTO>> getAllBooks(@PageableDefault(page = 0, size = 10) Pageable pageable) {
+        Page<BookDTO> bookDTOPage = bookService.getAllBooks(pageable);
+        return new ResponseEntity<>(bookDTOPage, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

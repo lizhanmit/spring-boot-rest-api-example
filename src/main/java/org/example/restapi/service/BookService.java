@@ -5,6 +5,8 @@ import org.example.restapi.exception.ResourceNotFoundEx;
 import org.example.restapi.entity.Book;
 import org.example.restapi.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,11 +32,9 @@ public class BookService {
         return entityToDTO(book);
     }
 
-    public List<BookDTO> getAllBooks() {
-        return bookRepository.findAll()
-                .stream()
-                .map(this::entityToDTO)
-                .collect(Collectors.toList());
+    public Page<BookDTO> getAllBooks(Pageable pageable) {
+         return bookRepository.findAll(pageable)
+                .map(this::entityToDTO);
     }
 
     public BookDTO getBookById(Long id) {
