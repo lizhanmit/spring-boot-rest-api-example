@@ -16,6 +16,8 @@ By using DTOs, you can control the data that is exposed through the API, hide se
 
 Pagination is used to limit the size of returned result of getting all books.
 
+The maximum page size is enforced to avoid performance issues and protect server from abuse.
+
 ## Test the API
 
 GET: http://localhost:8080/api/books
